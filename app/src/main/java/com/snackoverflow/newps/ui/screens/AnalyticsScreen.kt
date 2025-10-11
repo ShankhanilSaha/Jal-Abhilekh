@@ -41,7 +41,6 @@ fun AnalyticsTrendsScreenUI(navController: NavController? = null) {
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        // Summary cards
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
@@ -53,7 +52,6 @@ fun AnalyticsTrendsScreenUI(navController: NavController? = null) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Line chart title
         Text(
             text = "Water Level Over Time",
             fontSize = 18.sp,
@@ -62,7 +60,6 @@ fun AnalyticsTrendsScreenUI(navController: NavController? = null) {
             modifier = Modifier.padding(bottom = 8.dp)
         )
 
-        // Simple line chart
         LineChart(
             data = waterLevels,
             modifier = Modifier
@@ -118,14 +115,12 @@ fun LineChart(data: List<Float>, modifier: Modifier = Modifier) {
             if (index == 0) path.moveTo(x, y) else path.lineTo(x, y)
         }
 
-        // Draw smooth blue line
         drawPath(
             path = path,
             color = Color(0xFF1565C0),
             style = Stroke(width = 4f, cap = StrokeCap.Round)
         )
 
-        // Draw points
         data.forEachIndexed { index, value ->
             val x = index * spacing
             val y = size.height - ((value - minY) / (maxY - minY)) * size.height

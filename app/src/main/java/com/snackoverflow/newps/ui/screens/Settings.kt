@@ -26,7 +26,6 @@ fun SettingsProfileHelpScreen(navController: NavController? = null) {
     ) {
         Text(text = "Settings", fontSize = 28.sp, color = Color(0xFF1565C0), modifier = Modifier.padding(bottom = 16.dp))
 
-        // Profile Info Block
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(containerColor = Color.White),
@@ -43,7 +42,6 @@ fun SettingsProfileHelpScreen(navController: NavController? = null) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Settings Block
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(containerColor = Color.White),
@@ -78,7 +76,6 @@ fun SettingsProfileHelpScreen(navController: NavController? = null) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Help Block
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(containerColor = Color.White),
@@ -88,22 +85,18 @@ fun SettingsProfileHelpScreen(navController: NavController? = null) {
                 Text(text = "Help", fontSize = 20.sp, color = Color(0xFF1565C0))
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(text = "How to Capture Gauge Image Properly:")
-                // TODO: Add illustrations / tutorial content
             }
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Logout button at the end
         Button(
-            onClick = { /* TODO: Logout logic */ },
+            onClick = {  },
             modifier = Modifier.fillMaxWidth(),
             colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
         ) {
             Text("Logout", color = Color.White, fontSize = 16.sp)
         }
-
-        // TODO: Add small water ripple background animation
     }
 }
 

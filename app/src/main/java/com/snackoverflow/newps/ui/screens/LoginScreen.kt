@@ -28,7 +28,6 @@ fun LoginPage(navController: NavController? = null) {
     var selectedRole by remember { mutableStateOf(roles[0]) }
     var expanded by remember { mutableStateOf(false) }
 
-    // Gradient background
     val gradientBrush = Brush.verticalGradient(
         colors = listOf(Color(0xFFE3F2FF), Color(0xFFCFEFFF), Color(0xFFBEE8FF))
     )
@@ -45,8 +44,6 @@ fun LoginPage(navController: NavController? = null) {
             verticalArrangement = Arrangement.spacedBy(16.dp),
             modifier = Modifier.fillMaxWidth()
         ) {
-
-            // App Title
             Text(
                 text = "SecureField",
                 fontSize = 32.sp,
@@ -55,7 +52,6 @@ fun LoginPage(navController: NavController? = null) {
                 modifier = Modifier.padding(bottom = 16.dp)
             )
 
-            // Email Field
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
@@ -67,7 +63,6 @@ fun LoginPage(navController: NavController? = null) {
                 modifier = Modifier.fillMaxWidth()
             )
 
-            // Password Field
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
@@ -79,7 +74,6 @@ fun LoginPage(navController: NavController? = null) {
                 modifier = Modifier.fillMaxWidth()
             )
 
-            // Role Dropdown
             ExposedDropdownMenuBox(
                 expanded = expanded,
                 onExpandedChange = { expanded = !expanded },
@@ -107,7 +101,6 @@ fun LoginPage(navController: NavController? = null) {
                 }
             }
 
-            // Sign In Button
             Button(
                 onClick = { navController?.navigate(Screen.DashboardScreen.route) },
                 modifier = Modifier

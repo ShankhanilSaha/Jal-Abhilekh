@@ -32,7 +32,6 @@ fun ReadingDetailScreenUI(navController: NavController? = null) {
     var isApproved by remember { mutableStateOf(false) }
     var showWarning by remember { mutableStateOf(true) }
 
-    // Analytics data (same as AnalyticsTrendsScreenUI)
     val waterLevels = listOf(3.2f, 3.5f, 4.0f, 4.8f, 4.6f, 5.1f, 5.5f)
     val avgLevel = 3.58
     val maxLevel = 3.64 ?: 0f
@@ -53,7 +52,6 @@ fun ReadingDetailScreenUI(navController: NavController? = null) {
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        // --- Analytics Summary Cards ---
         Text(
             text = "Analytics Overview",
             fontSize = 20.sp,
@@ -73,7 +71,6 @@ fun ReadingDetailScreenUI(navController: NavController? = null) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // --- Line Chart ---
         Text(
             text = "Water Level Over Time",
             fontSize = 18.sp,
@@ -93,7 +90,6 @@ fun ReadingDetailScreenUI(navController: NavController? = null) {
 
         Spacer(modifier = Modifier.height(20.dp))
 
-        // --- Captured Image Card ---
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -102,18 +98,16 @@ fun ReadingDetailScreenUI(navController: NavController? = null) {
             colors = CardDefaults.cardColors(containerColor = Color.White),
             elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
         ) {
-            // CHANGED: Replaced Box with Image
             Image(
                 painter = painterResource(id = R.drawable.dam),
                 contentDescription = "Captured image of the dam",
                 modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop // Fills the container, cropping if necessary
+                contentScale = ContentScale.Crop
             )
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // --- Reading Info Card ---
         Card(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(12.dp),
@@ -133,7 +127,6 @@ fun ReadingDetailScreenUI(navController: NavController? = null) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // --- Small Map Placeholder ---
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -142,7 +135,6 @@ fun ReadingDetailScreenUI(navController: NavController? = null) {
             colors = CardDefaults.cardColors(containerColor = Color.White),
             elevation = CardDefaults.cardElevation(defaultElevation = 6.dp)
         ) {
-            // CHANGED: Replaced Box with Image
             Image(
                 painter = painterResource(id = R.drawable.map),
                 contentDescription = "Map preview of GPS location",
@@ -153,7 +145,6 @@ fun ReadingDetailScreenUI(navController: NavController? = null) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // --- Validation Badges ---
         Row(
             horizontalArrangement = Arrangement.spacedBy(10.dp),
             modifier = Modifier.fillMaxWidth(),
@@ -167,7 +158,6 @@ fun ReadingDetailScreenUI(navController: NavController? = null) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // --- Action Buttons ---
         Row(
             horizontalArrangement = Arrangement.spacedBy(16.dp),
             modifier = Modifier.fillMaxWidth()

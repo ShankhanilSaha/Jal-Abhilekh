@@ -28,7 +28,6 @@ data class DamAlert(
 
 @Composable
 fun AlertsScreenUI(navController: NavController? = null, modifier: Modifier = Modifier) {
-    // The list of dam alerts to be displayed.
     val damAlerts = listOf(
         DamAlert("Tehri Dam", "Bhagirathi River", "98.2% capacity", "+0.1%", "Critical"),
         DamAlert("Hirakud Dam", "Mahanadi River", "98.2% capacity", "+0.2%", "Critical"),
@@ -60,7 +59,6 @@ fun AlertsScreenUI(navController: NavController? = null, modifier: Modifier = Mo
 
 @Composable
 fun DamAlertCard(alert: DamAlert) {
-    // Determine the color based on the alert's status.
     val statusColor = when (alert.status) {
         "Critical" -> Color(0xFFD32F2F)
         "Warning" -> Color(0xFFFFA000)
@@ -102,7 +100,7 @@ fun DamAlertCard(alert: DamAlert) {
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Button(
-                    onClick = { /* TODO: Navigate to detailed dam info */ },
+                    onClick = {  },
                     shape = RoundedCornerShape(8.dp),
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF25a4ff))
                 ) {
@@ -113,7 +111,6 @@ fun DamAlertCard(alert: DamAlert) {
     }
 }
 
-// A helper composable to reduce code repetition in the card.
 @Composable
 private fun InfoColumn(title: String, value: String) {
     Column {

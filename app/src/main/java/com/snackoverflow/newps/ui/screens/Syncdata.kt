@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import com.snackoverflow.newps.ui.Screen
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -21,7 +22,7 @@ data class OfflineReading(
     val siteName: String,
     val timestamp: String,
     val waterLevel: String,
-    var status: String // "Pending", "Synced"
+    var status: String
 )
 
 @Composable
@@ -40,7 +41,6 @@ fun OfflineQueueScreenEnhanced(navController: NavController? = null) {
     var isSyncing by remember { mutableStateOf(false) }
     var showConfetti by remember { mutableStateOf(false) }
 
-    // Colors
     val lightBg = Color(0xFFdbf4ff)
     val cardBg = Color(0xFFd8efff)
     val primaryBlue = Color(0xFF25a4ff)
@@ -150,17 +150,17 @@ fun OfflineQueueScreenEnhanced(navController: NavController? = null) {
             }
         }
 
-        // Floating Sync All button
         FloatingActionButton(
             onClick = {
                 isSyncing = true
                 scope.launch {
                     readings = readings.map { it.copy(status = "Syncing") }
-                    delay(2000) // simulate network sync
+                    delay(2000)
                     readings = readings.map { it.copy(status = "Synced") }
                     isSyncing = false
                     showConfetti = true
                 }
+                navController?.navigate(Screen.DashboardScreen.route)
             },
             containerColor = primaryBlue,
             modifier = Modifier
@@ -170,7 +170,6 @@ fun OfflineQueueScreenEnhanced(navController: NavController? = null) {
             Text("Sync All", color = Color.White)
         }
 
-        // Confetti placeholder
         if (showConfetti) {
             Box(
                 modifier = Modifier

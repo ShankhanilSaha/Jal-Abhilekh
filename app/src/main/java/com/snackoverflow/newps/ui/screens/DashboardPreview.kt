@@ -65,7 +65,6 @@ fun SupervisorDashboardScreenUI(navController: NavController? = null) {
                 modifier = Modifier.padding(bottom = 16.dp)
             )
 
-            // Top Metrics Row
             Row(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = Modifier.fillMaxWidth()
@@ -77,7 +76,6 @@ fun SupervisorDashboardScreenUI(navController: NavController? = null) {
             }
         }
 
-        // Graph placeholder
         item {
             Card(
                 modifier = Modifier
@@ -91,7 +89,6 @@ fun SupervisorDashboardScreenUI(navController: NavController? = null) {
             }
         }
 
-        // Mid Metrics Row
         item {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -103,7 +100,6 @@ fun SupervisorDashboardScreenUI(navController: NavController? = null) {
             }
         }
 
-        // Environmental Metrics
         item {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
@@ -125,12 +121,10 @@ fun SupervisorDashboardScreenUI(navController: NavController? = null) {
             )
         }
 
-        // Dam Cards
         items(damList) { dam ->
             DamCard(dam)
         }
 
-        // Navigation Buttons
         item {
             Spacer(modifier = Modifier.height(16.dp))
             Row(

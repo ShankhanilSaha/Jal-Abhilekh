@@ -52,17 +52,13 @@ fun showPlaceholder() {
 fun QRValidationScreenUI(navController: NavController? = null) {
     var qrResult by remember { mutableStateOf("") }
     var isVerified by remember { mutableStateOf<Boolean?>(null) }
-    // --- CHANGE 1: Add a state to track if an image has been captured ---
     var hasImage by remember { mutableStateOf(false) }
 
     val context = LocalContext.current
 
-    // Create a temporary file for the photo
-    // We declare it here so the cameraLauncher can access it.
     var photoFile by remember { mutableStateOf<File?>(null) }
     var photoUri by remember { mutableStateOf<Uri?>(null) }
 
-    // Initialize file and URI only once
     LaunchedEffect(Unit) {
         try {
             val file = File.createTempFile(
@@ -82,23 +78,19 @@ fun QRValidationScreenUI(navController: NavController? = null) {
         }
     }
 
-    // Camera launcher
     val cameraLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.TakePicture()
     ) { success ->
-        // --- CHANGE 2: Update the 'hasImage' state on success ---
         if (success) {
             hasImage = true
             Toast.makeText(context, "Photo captured", Toast.LENGTH_SHORT).show()
         }
     }
 
-    // Camera permission launcher
     val permissionLauncher = rememberLauncherForActivityResult(
         ActivityResultContracts.RequestPermission()
     ) { isGranted: Boolean ->
         if (isGranted) {
-            // Permission granted, now launch the camera
             photoUri?.let { uri ->
                 cameraLauncher.launch(uri)
             } ?: Toast.makeText(context, "Photo file not ready", Toast.LENGTH_SHORT).show()
@@ -123,7 +115,6 @@ fun QRValidationScreenUI(navController: NavController? = null) {
             modifier = Modifier.padding(bottom = 24.dp)
         )
 
-        // QR Scanner Card
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(containerColor = Color.White),
@@ -166,18 +157,15 @@ fun QRValidationScreenUI(navController: NavController? = null) {
                         },
                     contentAlignment = Alignment.Center
                 ) {
-                    // --- CHANGE 3: Use 'hasImage' to decide what to display ---
                     if (hasImage && photoFile?.exists() == true) {
-                        // Load the bitmap directly from the file path
                         val bitmap = BitmapFactory.decodeFile(photoFile!!.absolutePath)
                         Image(
                             bitmap = bitmap.asImageBitmap(),
                             contentDescription = "Captured QR Code",
                             modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Crop // Ensures the image fills the box
+                            contentScale = ContentScale.Crop
                         )
                     } else {
-                        // Show placeholder if no image has been taken yet
                         showPlaceholder()
                     }
                 }
@@ -228,7 +216,6 @@ fun QRValidationScreenUI(navController: NavController? = null) {
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Instructions Card
         Card(
             modifier = Modifier.fillMaxWidth(),
             colors = CardDefaults.cardColors(containerColor = Color.White),
